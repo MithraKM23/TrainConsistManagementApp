@@ -1,40 +1,37 @@
 /*
  * @author Developer 
- * @version 5.0
+ * @version 6.0
  */
 
 package com.TrainConsistManagementApp.main;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 	public static void main(String[] args) {
 		
 		//Display welcome banner
-		System.out.println("================================================");
-		System.out.println("=== UC5 - Preserve Insertion Order of Bogies ===");
-		System.out.println("================================================");
+		System.out.println("=============================================");
+		System.out.println("=== UC6 - Map Bogie to capacity (HashMap) ===");
+		System.out.println("=============================================\n");
 		
-		// LinkedHashSet preserves Order and ensures uniqueness
-		Set<String> formation = new LinkedHashSet<>();
+		// HashMap stores data in key->value format
+		Map<String,Integer> capacityMap = new HashMap<>();
 		
-		formation.add("Engine");
-		formation.add("Sleeper");
-		formation.add("Cargo");
-		formation.add("Guard");
+		//---- Insert bogie capacities ----
+		capacityMap.put("First class", 24);
+		capacityMap.put("Cargo", 120);
+		capacityMap.put("Sleeper", 72);
+		capacityMap.put("AC Chair", 56);
 		
-		//Adding duplicates
-		formation.add("Sleeper");
-		formation.add("Guard");
-		System.out.println("\n");
-		System.out.println("Final train Formation:");
-		System.out.println(formation);
-		
-		System.out.println("\nNote:\nLinkedHashSet preserves insertion order and removes duplicates automatically");
+		//Displaying the mapped entries using EntrySet
+		for(Map.Entry<String, Integer> entry:capacityMap.entrySet()) {
+			System.out.println(entry);
+		}
 		
 		System.out.println("\n");
-		System.out.println("UC5 formation setup completed.");
+		System.out.println("UC6 bogie->capacity mapping completed.");
 		
 	}
 }
