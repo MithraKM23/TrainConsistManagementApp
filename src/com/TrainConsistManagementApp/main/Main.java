@@ -1,50 +1,40 @@
 /*
  * @author Developer 
- * @version 4.0
+ * @version 5.0
  */
 
 package com.TrainConsistManagementApp.main;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Main {
 	public static void main(String[] args) {
 		
 		//Display welcome banner
-		System.out.println("============================================");
-		System.out.println("=== UC4 - Maintain Ordered Bogie Consist ===");
-		System.out.println("============================================");
+		System.out.println("================================================");
+		System.out.println("=== UC5 - Preserve Insertion Order of Bogies ===");
+		System.out.println("================================================");
 		
-		//Create a LinkedList
-		// LinkedList maintains insertion order and allows fast inserts
-		List<String> trainConsist = new LinkedList<>();
+		// LinkedHashSet preserves Order and ensures uniqueness
+		Set<String> formation = new LinkedHashSet<>();
 		
-		//----ADD IDs (including duplicates)----
-		// add() inserts bogie IDs into the set
-		trainConsist.add("Engine");
-		trainConsist.add("Sleeper");
-		trainConsist.add("AC");
-		trainConsist.add("Cargo");
-		trainConsist.add("Guard");
+		formation.add("Engine");
+		formation.add("Sleeper");
+		formation.add("Cargo");
+		formation.add("Guard");
+		
+		//Adding duplicates
+		formation.add("Sleeper");
+		formation.add("Guard");
 		System.out.println("\n");
-		System.out.println("Initial train Consist");
-		System.out.println(trainConsist);
+		System.out.println("Final train Formation:");
+		System.out.println(formation);
 		
-		trainConsist.add(2, "Pantry Car");
-		System.out.println("\n");
-		System.out.println("After inserting 'Pantry Car' at position 2:");
-		System.out.println(trainConsist);
-		
-		trainConsist.removeFirst();
-		trainConsist.removeLast();
-		System.out.println("\n");
-		System.out.println("After removing first and last bogie:");
-		System.out.println(trainConsist);
-		
+		System.out.println("\nNote:\nLinkedHashSet preserves insertion order and removes duplicates automatically");
 		
 		System.out.println("\n");
-		System.out.println("UC4 ordered consist operations completed.");
+		System.out.println("UC5 formation setup completed.");
 		
 	}
 }
