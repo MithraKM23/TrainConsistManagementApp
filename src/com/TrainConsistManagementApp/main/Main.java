@@ -1,49 +1,42 @@
 /*
  * @author Developer 
- * @version 16.0
+ * @version 17.0
  */
 
 package com.TrainConsistManagementApp.main;
+
+import java.util.Arrays;
 
 public class Main {
 	
 	public static void main(String[] args) {
 
 		//Display welcome banner
-		System.out.println("===============================================");
-		System.out.println("=== UC16 - Manual Sorting using Bubble Sort ===");
-		System.out.println("===============================================\n");
+		System.out.println("===================================================");
+		System.out.println("=== UC17 - Sort Bogie Names Using Arrays.sort() ===");
+		System.out.println("===================================================\n");
 		
-		int[] capacities = {72,56,24,70,60};
+		//Creating bogies using array of strings
+		String[] bogies= {"Sleeper","AC Chair","First Class","General","Luxury"};
 		
-		System.out.println("Original Capacities: ");
-		for(int c : capacities) {
-			System.out.print(c+" ");
+		//Printing the bogies before sorting
+		System.out.println("Original Bogie Names: ");
+		for(String s:bogies) {
+			System.out.print(s+", ");
 		}
 		
-		for(int i=0;i<capacities.length-1;i++) {
-			boolean swapped=true;
-			for(int j=0;j<capacities.length-i-1;j++) {
-				if(capacities[j]>capacities[j+1]) {
-					int temp=capacities[j];
-					capacities[j]=capacities[j+1];
-					capacities[j+1]=temp;
-					swapped=false;
-				}
-			}
-			if(swapped) {
-				break;
-			}
+		//Sorting the bogies using Arrays.sort()
+		Arrays.sort(bogies);
+		
+		//Printing the bogies after sorting using for loop
+		System.out.println("\n");
+		System.out.println("Sorted Bogie Names (Alphabetical):");
+		for(String s:bogies) {
+			System.out.print(s+", ");
 		}
 		
 		System.out.println("\n");
-		System.out.println("Sorted Capacities (Ascending): ");
-		for(int c : capacities) {
-			System.out.print(c+" ");
-		}
-
-		System.out.println("\n");
-		System.out.println("UC16 sorting completed...");
+		System.out.println("UC17 sorting completed...");
 
 	}
 }
