@@ -1,64 +1,52 @@
 /*
  * @author Developer 
- * @version 13.0
+ * @version 14.0
  */
 
 package com.TrainConsistManagementApp.main;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Main {
-	static class Bogie{
+	static class PassengerBogie{
 		String type;
 		int capacity;
-		public Bogie(String type, int capacity) {
+		public PassengerBogie(String type, int capacity) throws InvalidCapacityException {
+			if(capacity<=0) {
+				throw new InvalidCapacityException("Error: Capacity must be greater than zero");
+			}
 			this.type = type;
 			this.capacity = capacity;
 		}
+		public String toString() {
+			return type+" -> "+capacity;
+		}
+	}
+	static class InvalidCapacityException extends Exception{
 
+		public InvalidCapacityException(String msg) {
+			super(msg);
+		}
+		
 	}
 
 	public static void main(String[] args) {
 
 		//Display welcome banner
-		System.out.println("=======================================================");
-		System.out.println("=== UC13 - Performance Comparison (Loops vs Streams ===");
-		System.out.println("=======================================================\n");
-
-		// Create list of passenger bogies
-		List<Bogie> bogies= new ArrayList<>();
-		bogies.add(new Bogie("Sleeper",72));
-		bogies.add(new Bogie("AC Chair",56));
-		bogies.add(new Bogie("First Class",24));
-		bogies.add(new Bogie("General",90));
-
-		List<Bogie> list=new ArrayList<>();
-
-		//Filtering the bogies using for loop
-		long loopstart=System.nanoTime();
-		for(Bogie b: bogies) {
-			if(b.capacity>60) {
-				list.add(b);
-			}
+		System.out.println("============================================");
+		System.out.println("=== UC14 - Handle Invalid Bogie Capacity ===");
+		System.out.println("============================================\n");
+		try {
+		PassengerBogie sleeper=new PassengerBogie("Sleeper",72);
+		System.out.println("Creeated Bogie: "+sleeper);
+		
+		PassengerBogie ac=new PassengerBogie("AC Chair",0);
+		System.out.println("Created Bogie: "+ac);
 		}
-		long loopend=System.nanoTime();
-		long looptime=loopend-loopstart;
-		System.out.println("Loop Execution Time (ns): "+looptime);
-
-		//Filtering all the bogies greater than 60 using stream()
-		long streamstart=System.nanoTime();
-		bogies.stream().filter(b -> b.capacity >60).collect(Collectors.toList());
-		long streamend = System.nanoTime();
-		long streamtime=streamend-streamstart;
-		System.out.println("Stream Execution Time (ns): "+streamtime);
-
-
-
-
+		catch(InvalidCapacityException e) {
+			System.out.println("Error: "+e.getMessage());
+		}
+		
 		System.out.println("\n");
-		System.out.println("UC13 performance benchmarking completed...");
+		System.out.println("UC14 exception handling completed...");
 
 	}
 }
