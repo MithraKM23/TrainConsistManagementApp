@@ -1,6 +1,6 @@
 /*
  * @author Developer 
- * @version 19.0
+ * @version 20.0
  */
 
 package com.TrainConsistManagementApp.main;
@@ -9,11 +9,34 @@ import java.util.Arrays;
 
 public class Main {
 	
+	public static int binarySearch(String[] bogies, String key) {
+        // Defensive check
+        if (bogies == null || bogies.length == 0) {
+            throw new IllegalStateException("No bogies available for search!");
+        }
+
+        int low = 0;
+        int high = bogies.length - 1;
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int result = key.compareTo(bogies[mid]);
+
+            if (result == 0) {
+                return mid; // Found
+            } else if (result < 0) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return -1; // Not found
+	}
 	public static void main(String[] args) {
 
 		//Display welcome banner
 		System.out.println("=========================================");
-		System.out.println("=== UC19 - Binary Search for Bogie ID ===");
+		System.out.println("=== Exceptional Handling During Search ===");
 		System.out.println("=========================================\n");
 		
 		//Creating array of bogie IDs
@@ -31,38 +54,23 @@ public class Main {
 			System.out.println(id);
 		}
 		
-		boolean result=false;
-		int low=0;
-		int high=bogiesIds.length-1;
-		
-		//Binary search logic
-		while(low<=high) {
-			int mid=(low+high)/2;
-			int output=key.compareTo(bogiesIds[mid]);
-			if(output==0) {
-				result=true;
-				break;
-			}
-			else if(output < 0) {
-				high=mid-1;
+		try {
+			int index=binarySearch(bogiesIds,key);
+			if(index!=-1) {
+				System.out.println("Bogie ID "+key+" found.");
 			}
 			else {
-				low=mid+1;
-			}
-			result=false;
-		}
-		
-		if(result) {
-			System.out.println("Bogie "+key+" found in train consist.");
-		}
-		else {
-			System.out.println("Bogie "+key+" not found in train consist.");
+				System.out.println("Bogie ID "+key+" found.");
 
+			}
+		}
+		catch(IllegalStateException e) {
+			System.out.println("Error: "+e.getMessage());
 		}
 		
 		
 		System.out.println("\n");
-		System.out.println("UC19 search completed...");
+		System.out.println("UC20 search completed...");
 
 	}
 }
