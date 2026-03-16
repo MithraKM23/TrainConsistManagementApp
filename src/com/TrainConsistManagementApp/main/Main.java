@@ -1,6 +1,6 @@
 /*
  * @author Developer 
- * @version 17.0
+ * @version 18.0
  */
 
 package com.TrainConsistManagementApp.main;
@@ -12,31 +12,39 @@ public class Main {
 	public static void main(String[] args) {
 
 		//Display welcome banner
-		System.out.println("===================================================");
-		System.out.println("=== UC17 - Sort Bogie Names Using Arrays.sort() ===");
-		System.out.println("===================================================\n");
+		System.out.println("=========================================");
+		System.out.println("=== UC18 - Linear Search for Bogie ID ===");
+		System.out.println("=========================================\n");
 		
-		//Creating bogies using array of strings
-		String[] bogies= {"Sleeper","AC Chair","First Class","General","Luxury"};
+		//Creating array of bogie IDs
+		String[] bogiesIds= {"BG101", "BG205", "BG309", "BG412", "BG550"};
 		
-		//Printing the bogies before sorting
-		System.out.println("Original Bogie Names: ");
-		for(String s:bogies) {
-			System.out.print(s+", ");
+		String searchId="BG309";
+		
+		System.out.println("Available Bogie IDs:");
+		for(String id:bogiesIds) {
+			System.out.println(id);
 		}
 		
-		//Sorting the bogies using Arrays.sort()
-		Arrays.sort(bogies);
+		//Using linear search to find if the bogie is present or not
+		boolean found=false;
+		 for(String id:bogiesIds) {
+			 if(id==searchId) {
+				 found=true;
+			 }
+		 }
 		
-		//Printing the bogies after sorting using for loop
-		System.out.println("\n");
-		System.out.println("Sorted Bogie Names (Alphabetical):");
-		for(String s:bogies) {
-			System.out.print(s+", ");
+		if(found) {
+			System.out.println("Bogie "+searchId+" found in train consist.");
+		}
+		else {
+			System.out.println("Bogie "+searchId+" not found in train consist.");
+
 		}
 		
+		
 		System.out.println("\n");
-		System.out.println("UC17 sorting completed...");
+		System.out.println("UC18 search completed...");
 
 	}
 }
